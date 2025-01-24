@@ -1,0 +1,4 @@
+id,first_name,last_name,date_of_birth,medication,dosage,medication_interval
+1,John,Doe,1990-05-15,Advil,200mg,6 hours
+2,John,Doe,1990-05-15,Advil,200mg,6 hours
+3,John,Doe,1990-05-15,Advil,200mg,6 hours
