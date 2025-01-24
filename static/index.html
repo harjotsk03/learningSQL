@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+    <h1>Patient Data</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Date of Birth</th>
+                <th>Medication</th>
+                <th>Dosage</th>
+                <th>Interval</th>
+            </tr>
+        </thead>
+        <tbody id="patient-data">
+            <!-- Data will be populated here dynamically -->
+        </tbody>
+    </table>
+    <script>
+        // Fetch data from the backend API
+        fetch('/api/patients')
+            .then(response => response.json())
+            .then(data => {
+                const tbody = document.getElementById('patient-data');
+                data.forEach(patient => {
+                    const row = `
+                        <tr>
+                            <td>${patient.id}</td>
+                            <td>${patient.first_name}</td>
+                            <td>${patient.last_name}</td>
+                            <td>${patient.date_of_birth}</td>
+                            <td>${patient.medication}</td>
+                            <td>${patient.dosage}</td>
+                            <td>${patient.medication_interval}</td>
+                        </tr>
+                    `;
+                    tbody.innerHTML += row;
+                });
+            })
+            .catch(error => console.error('Error fetching patient data:', error));
+    </script>
+</body>
+</html>
